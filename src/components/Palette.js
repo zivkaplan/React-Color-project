@@ -24,6 +24,7 @@ export default class Palette extends React.Component {
                 <ColorBox
                     background={color[this.state.colorFormat]}
                     name={color.name}
+                    key={color.id}
                 />
             )
         );
@@ -35,6 +36,10 @@ export default class Palette extends React.Component {
                     changeColorFormat={this.changeColorFormat}
                 />
                 <div className="Palette-colors">{colorBoxes}</div>
+                <footer className="Palette-footer">
+                    {this.props.palette.paletteName}
+                    <span className="emoji">{this.props.palette.emoji}</span>
+                </footer>
             </div>
         );
     }
