@@ -1,4 +1,5 @@
 import React from 'react';
+import chroma from 'chroma-js';
 import './css/ColorBox.css';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -18,6 +19,7 @@ export default class ColorBox extends React.Component {
     }
     render() {
         const { name, background, moreShadesUrl, showMoreLink } = this.props;
+        const isDarkColor = chroma(background).luminance() <= 0.4;
         return (
             <CopyToClipboard text={background} onCopy={this.handleCopy}>
                 <div style={{ background }} className="ColorBox">
@@ -32,20 +34,40 @@ export default class ColorBox extends React.Component {
                         `}
                     >
                         <h1>Copied!</h1>
-                        <p>{background}</p>
+                        <p
+                            className={`copy-desc ${
+                                isDarkColor && 'light-text'
+                            }`}
+                        >
+                            {background}
+                        </p>
                     </div>
                     <div className="copy-container">
                         <div className="box-content">
-                            <span>{name}</span>
+                            <span className={isDarkColor && 'light-text'}>
+                                {name}
+                            </span>
                         </div>
-                        <button className="copy-button">Copy </button>
+                        <button
+                            className={`copy-button ${
+                                isDarkColor && 'light-text'
+                            }`}
+                        >
+                            Copy
+                        </button>
                     </div>
                     {showMoreLink && (
                         <Link
                             to={moreShadesUrl}
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <span className="see-more">More</span>
+                            <span
+                                className={`see-more ${
+                                    isDarkColor && 'light-text'
+                                }`}
+                            >
+                                More
+                            </span>
                         </Link>
                     )}
                 </div>
