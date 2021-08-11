@@ -19,6 +19,7 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'space-between',
         color: 'white',
+        fontFamily: "'Roboto', sans-serif",
     },
     palettes: {
         boxSizing: 'border-box',

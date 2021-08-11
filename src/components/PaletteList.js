@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import MiniPalette from './MiniPalette';
 import styles from './jss/PaletteListStyles';
 
@@ -14,6 +15,9 @@ class PaletteList extends React.Component {
                 <div className={classes.container}>
                     <nav className={classes.nav}>
                         <h1>React Colors</h1>
+                        <Button variant="contained" href="/palette/create">
+                            Create Palette
+                        </Button>
                     </nav>
                     <div className={classes.palettes}>
                         {palettes.map((palette) => (
