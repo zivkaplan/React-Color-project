@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './css/Navbar.css';
@@ -11,7 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { colorFormat: 'hex', open: true };
+        this.state = { colorFormat: 'hex', open: false };
         this.handleFormatChange = this.handleFormatChange.bind(this);
         this.closeSnackbar = this.closeSnackbar.bind(this);
     }
@@ -27,7 +28,7 @@ export default class Navbar extends React.Component {
         return (
             <header className="Navbar">
                 <div className="logo">
-                    <a href="#">react-color-picker</a>
+                    <Link to="/">react-color-picker</Link>
                 </div>
                 <div className="slider-container">
                     <span>Level: {this.props.level}</span>
