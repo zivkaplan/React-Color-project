@@ -45,6 +45,7 @@ const styles = {
     },
 };
 function MiniPalette(props) {
+    // eslint-disable-next-line
     const { classes, paletteName, id, emoji, colors } = props;
     return (
         <div className={classes.root} onClick={props.handleClick}>
