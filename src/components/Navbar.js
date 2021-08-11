@@ -2,14 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import './css/Navbar.css';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { withStyles } from '@material-ui/styles';
+import styles from './jss/NavbarStyles';
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
     constructor(props) {
         super(props);
         this.state = { colorFormat: 'hex', open: false };
@@ -25,15 +26,18 @@ export default class Navbar extends React.Component {
         this.setState({ open: false });
     }
     render() {
+        const { classes } = this.props;
         return (
-            <header className="Navbar">
-                <div className="logo">
+            <header className={classes.Navbar}>
+                <div className={classes.logo}>
                     <Link to="/">react-color-picker</Link>
                 </div>
                 {this.props.showSlider && (
-                    <div className="slider-container">
-                        <span>Level: {this.props.level}</span>
-                        <div className="slider">
+                    <div>
+                        <span className={classes.currentLevel}>
+                            Level: {this.props.level}
+                        </span>
+                        <div className={classes.slider}>
                             <Slider
                                 defaultValue={this.props.level}
                                 min={100}
@@ -56,7 +60,7 @@ export default class Navbar extends React.Component {
                         </div>
                     </div>
                 )}
-                <div className="select-container">
+                <div className={classes.selectContainer}>
                     <Select
                         value={this.state.colorFormat}
                         onChange={this.handleFormatChange}
@@ -93,3 +97,5 @@ export default class Navbar extends React.Component {
         );
     }
 }
+
+export default withStyles(styles)(Navbar);
