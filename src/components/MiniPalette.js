@@ -50,7 +50,7 @@ function MiniPalette(props) {
     return (
         // <Link to={`/palette/${id}`}>
         //</Link>
-        <div className={classes.root}>
+        <div className={classes.root} onClick={props.handleClick}>
             <div className={classes.colors}>
                 {colors.map((color) => (
                     <div

@@ -87,7 +87,7 @@
     transform: scale(0);
     opacity: 0;
     color: white;
-    transition: transform 500ms ease-in-out;
+    transition: transform 300ms ease-in-out;
     transition-delay: 200ms;
 }
 .copy-msg.show {
