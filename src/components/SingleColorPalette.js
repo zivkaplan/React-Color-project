@@ -3,8 +3,10 @@ import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './jss/PaletteStyles';
 
-export default class SingleColorPalette extends React.Component {
+class SingleColorPalette extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,25 +32,26 @@ export default class SingleColorPalette extends React.Component {
         return shades.slice(1);
     }
     render() {
+        const { classes } = this.props;
         const colorBoxes = this._shades.map((color) => (
             <ColorBox
                 key={color.name}
                 name={color.name}
                 background={color[this.state.colorFormat]}
-                showMoreLink={false}
+                showingFullPalette={false}
             />
         ));
         return (
-            <div className=" SingleColorPalette Palette">
+            <div className={classes.Palette}>
                 <Navbar
                     showSlider={false}
                     changeColorFormat={this.changeColorFormat}
                 />
-                <div className="Palette-colors">
+                <div className={classes.PaletteColors}>
                     {colorBoxes}
-                    <div className="go-back ColorBox">
+                    <div className={classes.goBack}>
                         <Link
-                            className="back-button"
+                            className={classes.backButton}
                             to={`/palette/${this.props.palette.id}`}
                         >
                             Go Back
@@ -63,3 +66,5 @@ export default class SingleColorPalette extends React.Component {
         );
     }
 }
+
+export default withStyles(styles)(SingleColorPalette);

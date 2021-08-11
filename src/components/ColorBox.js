@@ -1,10 +1,10 @@
 import React from 'react';
-import chroma from 'chroma-js';
-import './css/ColorBox.css';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './jss/ColorBoxStyles';
 
-export default class ColorBox extends React.Component {
+class ColorBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,53 +18,45 @@ export default class ColorBox extends React.Component {
         });
     }
     render() {
-        const { name, background, moreShadesUrl, showMoreLink } = this.props;
-        const isDarkColor = chroma(background).luminance() <= 0.4;
+        const { classes, name, background, moreShadesUrl, showingFullPalette } =
+            this.props;
         return (
             <CopyToClipboard text={background} onCopy={this.handleCopy}>
-                <div style={{ background }} className="ColorBox">
+                <div style={{ background }} className={classes.ColorBox}>
                     <div
                         style={{ background }}
-                        className={`copy-overlay ${
-                            this.state.copyOverlay && 'show'
+                        className={`${classes.copyOverlay} ${
+                            this.state.copyOverlay && classes.showOverlay
                         }`}
                     />
                     <div
-                        className={`copy-msg ${this.state.copyOverlay && 'show'}
+                        className={`${classes.copyMsg} ${
+                            this.state.copyOverlay && classes.showCopyMsg
+                        }
                         `}
                     >
                         <h1>Copied!</h1>
-                        <p
-                            className={`copy-desc ${
-                                isDarkColor && 'light-text'
-                            }`}
-                        >
-                            {background}
-                        </p>
+                        <p className={classes.autoTextColor}>{background}</p>
                     </div>
-                    <div className="copy-container">
-                        <div className="box-content">
-                            <span className={isDarkColor && 'light-text'}>
+                    <div>
+                        <div className={classes.boxContent}>
+                            <span className={classes.autoTextColor}>
                                 {name}
                             </span>
                         </div>
                         <button
-                            className={`copy-button ${
-                                isDarkColor && 'light-text'
-                            }`}
+                            className={`${classes.copyButton} ${classes.autoTextColor}`}
                         >
                             Copy
                         </button>
                     </div>
-                    {showMoreLink && (
+                    {showingFullPalette && (
                         <Link
                             to={moreShadesUrl}
                             onClick={(e) => e.stopPropagation()}
                         >
                             <span
-                                className={`see-more ${
-                                    isDarkColor && 'light-text'
-                                }`}
+                                className={`${classes.seeMore} ${classes.autoTextColor}`}
                             >
                                 More
                             </span>
@@ -75,3 +67,5 @@ export default class ColorBox extends React.Component {
         );
     }
 }
+
+export default withStyles(styles)(ColorBox);

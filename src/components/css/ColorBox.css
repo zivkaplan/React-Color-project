@@ -1,4 +1,4 @@
-.ColorBox {
+/* .ColorBox {
     width: 20%;
     height: 25%;
     display: inline-block;
@@ -28,7 +28,6 @@
     font-size: 1rem;
     line-height: 30px;
     background-color: rgba(255, 255, 255, 0.3);
-    color: white;
     text-transform: uppercase;
     border: none;
     cursor: pointer;
@@ -48,13 +47,12 @@
     padding: 10px;
     left: 0;
     bottom: 0;
-    color: rgba(0, 0, 0, 0.8);
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.see-more {
+/.see-more {
     background-color: rgba(255, 255, 255, 0.3);
     position: absolute;
     bottom: 0;
@@ -66,7 +64,7 @@
     line-height: 30px;
     text-align: center;
     text-transform: uppercase;
-}
+} 
 
 .copy-overlay {
     opacity: 0;
@@ -126,7 +124,8 @@
 
 .copy-desc {
     color: rgba(0, 0, 0, 0.8);
-}
+} 
+
 
 .ColorBox.go-back {
     background-color: black;
@@ -134,6 +133,22 @@
     color: white;
 }
 
-.light-text {
-    color: white;
-}
+.back-button {
+    text-decoration: none;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -15px;
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 30px;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+} */
