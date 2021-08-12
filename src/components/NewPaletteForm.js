@@ -10,8 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { ChromePicker } from 'react-color';
+import { Button } from '@material-ui/core';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = (theme) => ({
     root: {
@@ -71,21 +73,34 @@ const styles = (theme) => ({
 });
 
 class NewPaletteForm extends React.Component {
-    state = {
-        open: false,
-    };
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            currentColor: 'teal',
+            colors: [],
+        };
+        this.updateColor = this.updateColor.bind(this);
+        this.addNewColor = this.addNewColor.bind(this);
+    }
+    updateColor(newColor) {
+        this.setState({ currentColor: newColor.hex });
+    }
+    addNewColor() {
+        this.setState({
+            colors: [...this.state.colors, this.state.currentColor],
+        });
+    }
     handleDrawerOpen = () => {
         this.setState({ open: true });
     };
-
     handleDrawerClose = () => {
         this.setState({ open: false });
     };
 
     render() {
         const { classes } = this.props;
-        const { open } = this.state;
+        const { open, currentColor } = this.state;
 
         return (
             <div className={classes.root}>
@@ -128,6 +143,27 @@ class NewPaletteForm extends React.Component {
                         </IconButton>
                     </div>
                     <Divider />
+                    <Typography variant="h4">Design Your Palette</Typography>
+                    <div>
+                        <Button variant="contained" color="secondary">
+                            Clear Palette
+                        </Button>
+                        <Button variant="contained" color="primary">
+                            Random Color
+                        </Button>
+                    </div>
+                    <ChromePicker
+                        color={currentColor}
+                        onChangeComplete={this.updateColor}
+                    />
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        style={{ backgroundColor: currentColor }}
+                        onClick={this.addNewColor}
+                    >
+                        Add Color
+                    </Button>
                 </Drawer>
                 <main
                     className={classNames(classes.content, {
@@ -135,23 +171,14 @@ class NewPaletteForm extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    <Typography paragraph>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Rhoncus dolor purus non enim praesent
-                        elementum facilisis leo vel. Risus at ultrices mi tempus
-                        imperdiet. Semper risus in hendrerit gravida rutrum
-                        quisque non tellus. Convallis convallis tellus id
-                        interdum velit laoreet id donec ultrices. Odio morbi
-                        quis commodo odio aenean sed adipiscing. Amet nisl
-                        suscipit adipiscing bibendum est ultricies integer quis.
-                        Cursus euismod quis viverra nibh cras. Metus vulputate
-                        eu scelerisque felis imperdiet proin fermentum leo.
-                        Mauris commodo quis imperdiet massa tincidunt. Cras
-                        tincidunt lobortis feugiat vivamus at augue. At augue
-                        eget arcu dictum varius duis at consectetur lorem. Velit
-                        sed ullamcorper morbi tincidunt. Lorem donec massa
-                        sapien faucibus et molestie ac.
+                    <Typography>
+                        <ul>
+                            {this.state.colors.map((color) => (
+                                <li style={{ backgroundColor: color }}>
+                                    {color}
+                                </li>
+                            ))}
+                        </ul>
                     </Typography>
                 </main>
             </div>
