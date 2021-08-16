@@ -45,7 +45,7 @@ class ColorBox extends React.Component {
                             </span>
                         </div>
                         <button
-                            className={`${classes.copyButton} ${classes.autoTextColor}`}
+                            className={`copyButton ${classes.copyButton} ${classes.autoTextColor}`}
                         >
                             Copy
                         </button>

@@ -15,6 +15,7 @@ import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
+
 const drawerWidth = 400;
 
 const styles = (theme) => ({
@@ -89,6 +90,7 @@ class NewPaletteForm extends React.Component {
         this.addNewColor = this.addNewColor.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.deleteColor = this.deleteColor.bind(this);
     }
 
     componentDidMount() {
@@ -125,11 +127,16 @@ class NewPaletteForm extends React.Component {
     addNewColor() {
         const newColor = {
             color: this.state.currentColor,
-            name: this.state.newName,
+            name: this.state.newColorName,
         };
         this.setState({
             colors: [...this.state.colors, newColor],
-            newName: '',
+            newColorName: '',
+        });
+    }
+    deleteColor(colorName) {
+        this.setState({
+            colors: this.state.colors.filter(({ name }) => name !== colorName),
         });
     }
     handleChange(e) {
@@ -257,8 +264,10 @@ class NewPaletteForm extends React.Component {
                     <div className={classes.drawerHeader} />
                     {this.state.colors.map((color) => (
                         <DraggableColorBox
+                            key={color.name}
                             color={color.color}
                             name={color.name}
+                            handleDelete={() => this.deleteColor(color.name)}
                         />
                     ))}
                 </main>

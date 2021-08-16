@@ -9,7 +9,7 @@ const styles = {
         position: 'relative',
         cursor: 'pointer',
         verticalAlign: 'top',
-        '&:hover button': {
+        '&:hover .copyButton': {
             transform: 'scale(1)',
         },
     },
