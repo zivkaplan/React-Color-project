@@ -1,5 +1,5 @@
 import React from 'react';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DraggableColorList';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,6 +15,7 @@ import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
+import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 400;
 
@@ -148,10 +149,15 @@ class NewPaletteForm extends React.Component {
     handleDrawerClose = () => {
         this.setState({ open: false });
     };
-
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        this.setState(({ colors }) => ({
+            colors: arrayMove(colors, oldIndex, newIndex),
+        }));
+    };
     render() {
         const { classes } = this.props;
-        const { open, currentColor, newColorName, newPaletteName } = this.state;
+        const { open, currentColor, newColorName, newPaletteName, colors } =
+            this.state;
 
         return (
             <div className={classes.root}>
@@ -262,14 +268,12 @@ class NewPaletteForm extends React.Component {
                     })}
                 >
                     <div className={classes.drawerHeader} />
-                    {this.state.colors.map((color) => (
-                        <DraggableColorBox
-                            key={color.name}
-                            color={color.color}
-                            name={color.name}
-                            handleDelete={() => this.deleteColor(color.name)}
-                        />
-                    ))}
+                    <DraggableColorList
+                        onSortEnd={this.onSortEnd}
+                        axis="xy"
+                        colors={colors}
+                        deleteColor={this.deleteColor}
+                    />
                 </main>
             </div>
         );
