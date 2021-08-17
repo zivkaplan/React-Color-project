@@ -2,11 +2,29 @@ import React from 'react';
 import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+    colorPicker: {
+        width: '100%',
+        marginTop: '2rem',
+    },
+    addColor: {
+        width: '100%',
+        fontSize: '2rem',
+        padding: '1rem',
+        marginTop: '1rem',
+    },
+    colorNameInput: {
+        width: '100%',
+        height: '70px',
+    },
+};
 
 class ColorPickerForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { newColorName: '', currentColor: 'red' };
+        this.state = { newColorName: '', currentColor: 'green' };
         this.handleChange = this.handleChange.bind(this);
         this.updateColor = this.updateColor.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,17 +58,23 @@ class ColorPickerForm extends React.Component {
     }
 
     render() {
-        const { handleSubmit, updateColor, paletteIsFull } = this.props;
+        const { handleSubmit, updateColor, paletteIsFull, classes } =
+            this.props;
         const { newColorName, currentColor } = this.state;
         return (
             <div>
                 <ChromePicker
+                    className={classes.colorPicker}
                     color={currentColor}
                     onChangeComplete={this.updateColor}
+                    width="100%"
                 />
                 <ValidatorForm onSubmit={this.handleSubmit}>
                     <TextValidator
+                        margin="normal"
+                        className={classes.colorNameInput}
                         name="newColorName"
+                        variant="filled"
                         label="Color Name"
                         value={newColorName}
                         onChange={this.handleChange}
@@ -66,6 +90,7 @@ class ColorPickerForm extends React.Component {
                         ]}
                     />
                     <Button
+                        className={classes.addColor}
                         variant="contained"
                         type="submit"
                         color="primary"
@@ -83,4 +108,4 @@ class ColorPickerForm extends React.Component {
         );
     }
 }
-export default ColorPickerForm;
+export default withStyles(styles)(ColorPickerForm);
