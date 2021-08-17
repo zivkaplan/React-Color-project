@@ -78,12 +78,16 @@ const styles = (theme) => ({
 });
 
 class NewPaletteForm extends React.Component {
+    static defaultProps = {
+        maxColors: 20,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             open: false,
             currentColor: 'teal',
-            colors: [{ color: 'blue', name: 'blue' }],
+            colors: [...this.props.palettes[0].colors],
             newPaletteName: '',
             newColorName: '',
         };
@@ -92,6 +96,8 @@ class NewPaletteForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.deleteColor = this.deleteColor.bind(this);
+        this.clearPalette = this.clearPalette.bind(this);
+        this.addRandomColor = this.addRandomColor.bind(this);
     }
 
     componentDidMount() {
@@ -112,6 +118,7 @@ class NewPaletteForm extends React.Component {
             )
         );
     }
+
     handleSubmit() {
         let name = this.state.newPaletteName;
         const newPalette = {
@@ -122,9 +129,11 @@ class NewPaletteForm extends React.Component {
         this.props.savePalette(newPalette);
         this.props.history.push('/');
     }
+
     updateColor(newColor) {
         this.setState({ currentColor: newColor.hex });
     }
+
     addNewColor() {
         const newColor = {
             color: this.state.currentColor,
@@ -135,30 +144,46 @@ class NewPaletteForm extends React.Component {
             newColorName: '',
         });
     }
+
     deleteColor(colorName) {
         this.setState({
             colors: this.state.colors.filter(({ name }) => name !== colorName),
         });
     }
+
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
+
     handleDrawerOpen = () => {
         this.setState({ open: true });
     };
+
     handleDrawerClose = () => {
         this.setState({ open: false });
     };
+
     onSortEnd = ({ oldIndex, newIndex }) => {
         this.setState(({ colors }) => ({
             colors: arrayMove(colors, oldIndex, newIndex),
         }));
     };
+
+    clearPalette() {
+        this.setState({ colors: [] });
+    }
+
+    addRandomColor() {
+        const allColors = this.props.palettes.map((p) => p.colors).flat();
+        const random = Math.floor(Math.random() * allColors.length);
+        this.setState({ colors: [...this.state.colors, allColors[random]] });
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, maxColors } = this.props;
         const { open, currentColor, newColorName, newPaletteName, colors } =
             this.state;
-
+        const paletteIsFull = colors.length >= maxColors;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -224,10 +249,19 @@ class NewPaletteForm extends React.Component {
                     <Divider />
                     <Typography variant="h4">Design Your Palette</Typography>
                     <div>
-                        <Button variant="contained" color="secondary">
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={this.clearPalette}
+                        >
                             Clear Palette
                         </Button>
-                        <Button variant="contained" color="primary">
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.addRandomColor}
+                            disabled={paletteIsFull}
+                        >
                             Random Color
                         </Button>
                     </div>
@@ -256,9 +290,14 @@ class NewPaletteForm extends React.Component {
                             variant="contained"
                             type="submit"
                             color="primary"
-                            style={{ backgroundColor: currentColor }}
+                            style={{
+                                backgroundColor: paletteIsFull
+                                    ? 'grey'
+                                    : currentColor,
+                            }}
+                            disabled={paletteIsFull}
                         >
-                            Add Color
+                            {paletteIsFull ? 'Palette Full' : 'Add Color'}
                         </Button>
                     </ValidatorForm>
                 </Drawer>
@@ -273,6 +312,7 @@ class NewPaletteForm extends React.Component {
                         axis="xy"
                         colors={colors}
                         deleteColor={this.deleteColor}
+                        distance={2}
                     />
                 </main>
             </div>
