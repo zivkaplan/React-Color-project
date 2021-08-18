@@ -7,10 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Button } from '@material-ui/core';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import drawerWidth from './DrawerWidth';
+import PaletteNamePopup from './PaletteNamePopup';
 
 const styles = (theme) => ({
     root: {
@@ -23,6 +23,7 @@ const styles = (theme) => ({
         }),
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
         height: '64px',
     },
     appBarShift: {
@@ -37,34 +38,38 @@ const styles = (theme) => ({
         marginLeft: 12,
         marginRight: 20,
     },
-    navBtns: {},
+    navBtns: {
+        marginRight: '1rem',
+    },
+    button: {
+        margin: '0 0.5rem',
+        '& a': {
+            textDecoration: 'none',
+        },
+    },
 });
 
 class PaletteFormNav extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { newPaletteName: '' };
+        this.state = { newPaletteName: '', popupState: false };
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    componentDidMount() {
-        ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
-            this.props.palettes.every(
-                ({ paletteName }) =>
-                    paletteName.toLowerCase() !== value.toLowerCase()
-            )
-        );
-    }
-    handleSubmit(e) {
-        this.props.handleSubmit(this.state.newPaletteName);
+        this.handleOpen = this.handleOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
+    handleOpen() {
+        this.setState({ popupState: true });
+    }
+    handleClose() {
+        this.setState({ popupState: false });
+    }
     render() {
-        const { classes, open, handleDrawerOpen } = this.props;
-        const { newPaletteName } = this.state;
+        const { classes, open, handleDrawerOpen, palettes, handleSubmit } =
+            this.props;
+        const { newPaletteName, popupState } = this.state;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -88,37 +93,37 @@ class PaletteFormNav extends React.Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Create A Palette{' '}
+                            Create A Palette
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={this.handleSubmit}>
-                            <TextValidator
-                                label="Palette Name"
-                                name="newPaletteName"
-                                value={newPaletteName}
-                                onChange={this.handleChange}
-                                validators={['required', 'isPaletteNameUnique']}
-                                errorMessages={[
-                                    'enter a palette name',
-                                    'palette name already exists',
-                                ]}
-                            />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                            >
-                                Save Palette
-                            </Button>
-                        </ValidatorForm>
+                        <Button
+                            className={classes.button}
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleOpen}
+                        >
+                            Open form dialog
+                        </Button>
                         <Link to="/">
-                            <Button variant="contained" color="secondary">
+                            <Button
+                                className={classes.button}
+                                variant="contained"
+                                color="secondary"
+                            >
                                 Back
                             </Button>
                         </Link>
                     </div>
                 </AppBar>
+                <PaletteNamePopup
+                    popupState={popupState}
+                    palettes={palettes}
+                    handleSubmit={handleSubmit}
+                    newPaletteName={newPaletteName}
+                    handleClose={this.handleClose}
+                />
+                )
             </div>
         );
     }
