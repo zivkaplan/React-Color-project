@@ -21,6 +21,7 @@ class PaletteList extends React.Component {
                         {palettes.map((palette) => (
                             <MiniPalette
                                 {...palette}
+                                key={palette.id}
                                 deletePalette={deletePalette}
                                 handleClick={() => this.goToPalette(palette.id)}
                             />
