@@ -91,11 +91,12 @@ class NewPaletteForm extends React.Component {
         this.addRandomColor = this.addRandomColor.bind(this);
     }
 
-    handleSubmit(paletteName) {
+    handleSubmit(paletteName, emoji) {
         const newPalette = {
             paletteName,
             id: paletteName.toLowerCase().replace(/ /g, '-'),
             colors: this.state.colors,
+            emoji,
         };
         this.props.savePalette(newPalette);
         this.props.history.push('/');

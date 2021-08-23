@@ -66,6 +66,7 @@ class PaletteFormNav extends React.Component {
     handleClose() {
         this.setState({ popupState: false });
     }
+
     render() {
         const { classes, open, handleDrawerOpen, palettes, handleSubmit } =
             this.props;
@@ -103,7 +104,7 @@ class PaletteFormNav extends React.Component {
                             color="primary"
                             onClick={this.handleOpen}
                         >
-                            Open form dialog
+                            Save
                         </Button>
                         <Link to="/">
                             <Button
