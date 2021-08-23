@@ -3,23 +3,7 @@ import { ChromePicker } from 'react-color';
 import { Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { withStyles } from '@material-ui/core/styles';
-
-const styles = {
-    colorPicker: {
-        width: '100%',
-        marginTop: '2rem',
-    },
-    addColor: {
-        width: '100%',
-        fontSize: '2rem',
-        padding: '1rem',
-        marginTop: '1rem',
-    },
-    colorNameInput: {
-        width: '100%',
-        height: '70px',
-    },
-};
+import styles from './jss/ColorPickerFormStyles';
 
 class ColorPickerForm extends React.Component {
     constructor(props) {
@@ -58,6 +42,7 @@ class ColorPickerForm extends React.Component {
     }
 
     render() {
+        // eslint-disable-next-line no-unused-vars
         const { handleSubmit, updateColor, paletteIsFull, classes } =
             this.props;
         const { newColorName, currentColor } = this.state;
