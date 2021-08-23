@@ -9,7 +9,7 @@ import AddToPhotos from '@material-ui/icons/AddToPhotos';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import styles from './jss/PaletteFormNavStyles';
+import styles from './styles/PaletteFormNavStyles';
 
 import PaletteNamePopup from './PaletteNamePopup';
 

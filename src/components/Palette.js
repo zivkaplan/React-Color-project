@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
 import { withStyles } from '@material-ui/core/styles';
-import styles from './jss/PaletteStyles';
+import styles from './styles/PaletteStyles';
 
 class Palette extends React.Component {
     constructor(props) {
