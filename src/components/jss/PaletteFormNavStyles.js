@@ -35,6 +35,9 @@ const styles = (theme) => ({
             textDecoration: 'none',
         },
     },
+    hide: {
+        display: 'none',
+    },
 });
 
 export default styles;

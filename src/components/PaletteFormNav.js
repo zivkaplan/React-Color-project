@@ -5,11 +5,12 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AddToPhotos from '@material-ui/icons/AddToPhotos';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './jss/PaletteFormNavStyles';
+
 import PaletteNamePopup from './PaletteNamePopup';
 
 class PaletteFormNav extends React.Component {
@@ -54,7 +55,7 @@ class PaletteFormNav extends React.Component {
                                 open && classes.hide
                             )}
                         >
-                            <MenuIcon />
+                            <AddToPhotos />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
                             Create A Palette

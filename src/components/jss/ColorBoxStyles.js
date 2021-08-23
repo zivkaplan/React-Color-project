@@ -2,6 +2,7 @@ import chroma from 'chroma-js';
 
 const styles = {
     ColorBox: {
+        boxSizing: 'border-box',
         width: '20%',
         height: (props) => (props.showingFullPalette ? '25%' : '50%'),
         display: 'inline-block',

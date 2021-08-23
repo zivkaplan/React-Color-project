@@ -2,10 +2,12 @@ import chroma from 'chroma-js';
 
 const styles = {
     root: {
+        boxSizing: 'border-box',
         width: '20%',
         height: '25%',
         display: 'inline-block',
         margin: '0 auto',
+        marginBottom: '-5px',
         position: 'relative',
         cursor: 'pointer',
         '&:hover .deleteIcon': {
