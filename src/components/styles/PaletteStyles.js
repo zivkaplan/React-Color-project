@@ -1,3 +1,5 @@
+import mediaQueries from './mediaQueries';
+
 const styles = {
     Palette: {
         height: '100vh',
@@ -38,6 +40,18 @@ const styles = {
             border: 'none',
             cursor: 'pointer',
             color: 'white',
+        },
+        [mediaQueries.down('lg')]: {
+            width: '25%',
+            height: '33.33%',
+        },
+        [mediaQueries.down('md')]: {
+            width: '50%',
+            height: '20%',
+        },
+        [mediaQueries.down('xs')]: {
+            width: '100%',
+            height: '10%',
         },
     },
 };

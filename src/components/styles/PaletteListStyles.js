@@ -1,3 +1,4 @@
+import mediaQueries from './mediaQueries';
 const styles = {
     root: {
         backgroundColor: 'blue',
@@ -13,6 +14,9 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
+        [mediaQueries.down('xl')]: {
+            width: '70%',
+        },
     },
     nav: {
         width: '100%',
@@ -39,7 +43,13 @@ const styles = {
         width: '100%',
         display: 'grid',
         gridTemplateColumns: 'repeat(3,30%)',
-        gap: '5%',
+        gap: '1.5rem',
+        [mediaQueries.down('md')]: {
+            gridTemplateColumns: 'repeat(2,50%)',
+        },
+        [mediaQueries.down('xs')]: {
+            gridTemplateColumns: 'repeat(1,100%)',
+        },
     },
 };
 export default styles;

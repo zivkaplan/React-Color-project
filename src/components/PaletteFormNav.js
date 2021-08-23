@@ -57,7 +57,12 @@ class PaletteFormNav extends React.Component {
                         >
                             <AddToPhotos />
                         </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
+                        <Typography
+                            className={classes.createPaletteTitle}
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                        >
                             Create A Palette
                         </Typography>
                     </Toolbar>

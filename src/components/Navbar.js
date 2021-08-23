@@ -33,8 +33,8 @@ class Navbar extends React.Component {
                     <Link to="/">react-color-picker</Link>
                 </div>
                 {this.props.showSlider && (
-                    <div>
-                        <span className={classes.currentLevel}>
+                    <div className={classes.sliderContainer}>
+                        <span className={`${classes.currentLevel}`}>
                             Level: {this.props.level}
                         </span>
                         <div className={classes.slider}>

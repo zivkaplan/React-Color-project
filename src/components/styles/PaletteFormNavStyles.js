@@ -1,8 +1,10 @@
 import { DRAWER_WIDTH } from '../../constants';
+import mediaQueries from './mediaQueries';
 
 const styles = (theme) => ({
     root: {
         display: 'flex',
+        maxWidth: '100vw',
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -25,14 +27,25 @@ const styles = (theme) => ({
     menuButton: {
         marginLeft: 12,
         marginRight: 20,
+        [mediaQueries.down('xs')]: {
+            marginLeft: 0,
+            marginRight: 0,
+        },
     },
     navBtns: {
-        marginRight: '1rem',
+        marginRight: '0.5rem',
+        [mediaQueries.down('xs')]: {
+            margin: '0',
+        },
     },
     button: {
         margin: '0 0.5rem',
         '& a': {
             textDecoration: 'none',
+        },
+        [mediaQueries.down('xs')]: {
+            marginRight: '0.2rem',
+            fontSize: '12px',
         },
     },
     hide: {

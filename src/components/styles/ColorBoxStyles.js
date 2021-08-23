@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import mediaQueries from './mediaQueries';
 
 const styles = {
     ColorBox: {
@@ -12,6 +13,18 @@ const styles = {
         verticalAlign: 'top',
         '&:hover .copyButton': {
             transform: 'scale(1)',
+        },
+        [mediaQueries.down('lg')]: {
+            width: '25%',
+            height: (props) => (props.showingFullPalette ? '20%' : '33.33%'),
+        },
+        [mediaQueries.down('md')]: {
+            width: '50%',
+            height: (props) => (props.showingFullPalette ? '10%' : '20%'),
+        },
+        [mediaQueries.down('xs')]: {
+            width: '100%',
+            height: (props) => (props.showingFullPalette ? '5%' : '10%'),
         },
     },
     autoTextColor: {
@@ -95,6 +108,9 @@ const styles = {
             padding: '1rem',
             marginBottom: '0',
             textTransform: 'uppercase',
+            [mediaQueries.down('xs')]: {
+                fontSize: '6rem',
+            },
         },
         '& p': {
             font: '2rem',

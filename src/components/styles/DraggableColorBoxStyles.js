@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+import mediaQueries from './mediaQueries';
 
 const styles = {
     root: {
@@ -7,11 +8,23 @@ const styles = {
         height: '25%',
         display: 'inline-block',
         margin: '0 auto',
-        marginBottom: '-5px',
+        marginBottom: '-6px',
         position: 'relative',
         cursor: 'pointer',
         '&:hover .deleteIcon': {
             transform: 'scale(1.4)',
+        },
+        [mediaQueries.down('lg')]: {
+            width: '25%',
+            height: '20%',
+        },
+        [mediaQueries.down('md')]: {
+            width: '50%',
+            height: '10%',
+        },
+        [mediaQueries.down('sm')]: {
+            width: '100%',
+            height: '5%',
         },
     },
     boxContent: {
