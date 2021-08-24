@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MiniPalette from './MiniPalette';
 import styles from './styles/PaletteListStyles';
 import { Link } from 'react-router-dom';
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 class PaletteList extends React.Component {
     goToPalette(id) {
         this.props.history.push(`/palette/${id}`);
@@ -14,19 +14,27 @@ class PaletteList extends React.Component {
             <div className={classes.root}>
                 <div className={classes.container}>
                     <nav className={classes.nav}>
-                        <h1>React Colors</h1>
+                        <h1 className={classes.heading}>React Colors</h1>
                         <Link to="/palette/create">Create Palette</Link>
                     </nav>
-                    <div className={classes.palettes}>
+                    <TransitionGroup className={classes.palettes}>
                         {palettes.map((palette) => (
-                            <MiniPalette
-                                {...palette}
+                            <CSSTransition
                                 key={palette.id}
-                                deletePalette={deletePalette}
-                                handleClick={() => this.goToPalette(palette.id)}
-                            />
+                                classNames="fade"
+                                timeout={500}
+                            >
+                                <MiniPalette
+                                    {...palette}
+                                    key={palette.id}
+                                    deletePalette={deletePalette}
+                                    handleClick={() =>
+                                        this.goToPalette(palette.id)
+                                    }
+                                />
+                            </CSSTransition>
                         ))}
-                    </div>
+                    </TransitionGroup>
                 </div>
             </div>
         );

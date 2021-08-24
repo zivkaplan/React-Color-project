@@ -47,9 +47,12 @@ const styles = {
         alignItems: 'center',
         letterSpacing: '2px',
         textTransform: 'uppercase',
+        minWidth: '260px',
         '& a': {
             textDecoration: 'none',
             color: 'black',
+            paddingTop: '5px',
+            paddingBottom: '5px',
             width: '100%',
         },
         [mediaQueries.down('xs')]: {
