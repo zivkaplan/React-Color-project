@@ -6,11 +6,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 class MiniPalette extends React.Component {
     constructor(props) {
         super(props);
-        this.deletePalette = this.deletePalette.bind(this);
+        this.deletePaletteDialog = this.deletePaletteDialog.bind(this);
     }
-    deletePalette(e) {
+    deletePaletteDialog(e) {
         e.stopPropagation();
-        this.props.deletePalette(this.props.id);
+        this.props.deletePaletteDialog(this.props.id);
     }
 
     render() {
@@ -21,7 +21,7 @@ class MiniPalette extends React.Component {
             <div className={classes.root} onClick={handleClick}>
                 <DeleteIcon
                     className={`deleteIcon ${classes.deleteIcon}`}
-                    onClick={this.deletePalette}
+                    onClick={this.deletePaletteDialog}
                 />
                 <div className={classes.colors}>
                     {colors.map((color) => (
