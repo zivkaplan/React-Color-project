@@ -158,7 +158,7 @@ class NewPaletteForm extends React.Component {
                         axis="xy"
                         colors={colors}
                         deleteColor={this.deleteColor}
-                        distance={2}
+                        distance={5}
                     />
                 </main>
             </div>
