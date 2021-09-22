@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import seedColors from './seedColors';
 import generatePalette from './colorHelpers';
@@ -8,6 +7,7 @@ import SingleColorPalette from './components/SingleColorPalette';
 import PaletteList from './components/PaletteList';
 import NewPaletteForm from './components/NewPaletteForm';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Page from './components/Page';
 
 class App extends React.Component {
     constructor(props) {
@@ -64,7 +64,7 @@ class App extends React.Component {
                                     exact
                                     path="/"
                                     render={(routeProps) => (
-                                        <div className="page">
+                                        <Page>
                                             <PaletteList
                                                 palettes={this.state.palettes}
                                                 {...routeProps}
@@ -72,27 +72,27 @@ class App extends React.Component {
                                                     this.deletePalette
                                                 }
                                             />
-                                        </div>
+                                        </Page>
                                     )}
                                 />
                                 <Route
                                     exact
                                     path="/palette/create"
                                     render={(routeProps) => (
-                                        <div className="page">
+                                        <Page>
                                             <NewPaletteForm
                                                 savePalette={this.savePalette}
                                                 {...routeProps}
                                                 palettes={this.state.palettes}
                                             />
-                                        </div>
+                                        </Page>
                                     )}
                                 />
                                 <Route
                                     exact
                                     path="/palette/:palleteId"
                                     render={(routeProps) => (
-                                        <div className="page">
+                                        <Page>
                                             <Palette
                                                 palette={generatePalette(
                                                     this.findPalette(
@@ -101,14 +101,14 @@ class App extends React.Component {
                                                     )
                                                 )}
                                             />
-                                        </div>
+                                        </Page>
                                     )}
                                 />
                                 <Route
                                     exact
                                     path="/palette/:palleteId/:colorId"
                                     render={(routeProps) => (
-                                        <div className="page">
+                                        <Page>
                                             <SingleColorPalette
                                                 colorId={
                                                     routeProps.match.params
@@ -121,7 +121,7 @@ class App extends React.Component {
                                                     )
                                                 )}
                                             />
-                                        </div>
+                                        </Page>
                                     )}
                                 />
                             </Switch>

@@ -33,6 +33,7 @@ export default class PaletteNamePopup extends React.Component {
     }
     savePalette(emoji) {
         this.props.handleSubmit(this.state.newPaletteName, emoji.native);
+        this.handleClose();
     }
 
     handleChange(e) {
