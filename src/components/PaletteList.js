@@ -63,9 +63,7 @@ class PaletteList extends React.Component {
                                     deletePaletteDialog={
                                         this.toggleDeleteDialog
                                     }
-                                    handleClick={() =>
-                                        this.goToPalette(palette.id)
-                                    }
+                                    goToPalette={this.goToPalette}
                                 />
                             </CSSTransition>
                         ))}
