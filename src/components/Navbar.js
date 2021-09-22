@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles/NavbarStyles';
 
@@ -26,7 +26,8 @@ class Navbar extends React.Component {
         this.setState({ open: false });
     }
     render() {
-        const { classes } = this.props;
+        const { classes, level, changeLevel } = this.props;
+        const { colorFormat, open } = this.state;
         return (
             <header className={classes.Navbar}>
                 <div className={classes.logo}>
@@ -39,11 +40,11 @@ class Navbar extends React.Component {
                         </span>
                         <div className={classes.slider}>
                             <Slider
-                                defaultValue={this.props.level}
+                                defaultValue={level}
                                 min={100}
                                 max={900}
                                 step={100}
-                                onAfterChange={this.props.changeLevel}
+                                onAfterChange={changeLevel}
                                 trackStyle={{ backgroundColor: 'transparent' }}
                                 handleStyle={{
                                     borderColor: 'green',
@@ -62,7 +63,7 @@ class Navbar extends React.Component {
                 )}
                 <div className={classes.selectContainer}>
                     <Select
-                        value={this.state.colorFormat}
+                        value={colorFormat}
                         onChange={this.handleFormatChange}
                     >
                         <MenuItem value="hex">HEX</MenuItem>
@@ -76,10 +77,10 @@ class Navbar extends React.Component {
                         horizontal: 'left',
                     }}
                     autoHideDuration={2000}
-                    open={this.state.open}
+                    open={open}
                     onClose={this.closeSnackbar}
                     message={
-                        <span>{`Color Format Set To ${this.state.colorFormat.toUpperCase()}`}</span>
+                        <span>{`Color Format Set To ${colorFormat.toUpperCase()}`}</span>
                     }
                     ContentProps={{ 'aria-describedby': 'message-id' }}
                     action={[

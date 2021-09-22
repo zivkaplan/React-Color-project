@@ -1,7 +1,7 @@
 import React from 'react';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/MiniPaletteStyles';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 class MiniPalette extends React.PureComponent {
     constructor(props) {

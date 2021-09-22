@@ -5,15 +5,15 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { blue, red } from '@material-ui/core/colors';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import MiniPalette from './MiniPalette';
 import styles from './styles/PaletteListStyles';
-import { Link } from 'react-router-dom';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import MiniPalette from './MiniPalette';
 
 class PaletteList extends React.Component {
     constructor(props) {
@@ -41,7 +41,7 @@ class PaletteList extends React.Component {
     }
 
     render() {
-        const { classes, palettes, deletePalette } = this.props;
+        const { classes, palettes } = this.props;
         const { openDeleteDialog } = this.state;
         return (
             <div className={classes.root}>

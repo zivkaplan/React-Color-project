@@ -1,4 +1,5 @@
 import React from 'react';
+import { Picker } from 'emoji-mart';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,7 +8,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import 'emoji-mart/css/emoji-mart.css';
-import { Picker } from 'emoji-mart';
 
 export default class PaletteNamePopup extends React.Component {
     constructor(props) {
@@ -52,9 +52,11 @@ export default class PaletteNamePopup extends React.Component {
     }
 
     render() {
+        const { emojiPopup, newPaletteName } = this.state;
+        const { popupState } = this.props;
         return (
             <div>
-                <Dialog open={this.state.emojiPopup} onClose={this.handleClose}>
+                <Dialog open={emojiPopup} onClose={this.handleClose}>
                     <DialogTitle id="form-dialog-title">
                         Pick an Emoji for Your Palette
                     </DialogTitle>
@@ -64,7 +66,7 @@ export default class PaletteNamePopup extends React.Component {
                     />
                 </Dialog>
                 <Dialog
-                    open={this.props.popupState && !this.state.emojiPopup}
+                    open={popupState && !emojiPopup}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
@@ -83,7 +85,7 @@ export default class PaletteNamePopup extends React.Component {
                                 margin="normal"
                                 label="Palette Name"
                                 name="newPaletteName"
-                                value={this.state.newPaletteName}
+                                value={newPaletteName}
                                 onChange={this.handleChange}
                                 validators={['required', 'isPaletteNameUnique']}
                                 errorMessages={[

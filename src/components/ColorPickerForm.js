@@ -42,9 +42,7 @@ class ColorPickerForm extends React.Component {
     }
 
     render() {
-        // eslint-disable-next-line no-unused-vars
-        const { handleSubmit, updateColor, paletteIsFull, classes } =
-            this.props;
+        const { paletteIsFull, classes } = this.props;
         const { newColorName, currentColor } = this.state;
         return (
             <div>

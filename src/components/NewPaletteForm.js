@@ -1,17 +1,17 @@
 import React from 'react';
-import DraggableColorList from './DraggableColorList';
+import { arrayMove } from 'react-sortable-hoc';
 import classNames from 'classnames';
-import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { Button } from '@material-ui/core';
-import { arrayMove } from 'react-sortable-hoc';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles/NewPaletteFormStyles';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import styles from './styles/NewPaletteFormStyles';
+import DraggableColorList from './DraggableColorList';
 
 class NewPaletteForm extends React.Component {
     static defaultProps = {

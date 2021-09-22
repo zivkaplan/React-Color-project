@@ -20,18 +20,19 @@ class ColorBox extends React.Component {
     render() {
         const { classes, name, background, moreShadesUrl, showingFullPalette } =
             this.props;
+        const { copyOverlay } = this.state;
         return (
             <CopyToClipboard text={background} onCopy={this.handleCopy}>
                 <div style={{ background }} className={classes.ColorBox}>
                     <div
                         style={{ background }}
                         className={`${classes.copyOverlay} ${
-                            this.state.copyOverlay && classes.showOverlay
+                            copyOverlay && classes.showOverlay
                         }`}
                     />
                     <div
                         className={`${classes.copyMsg} ${
-                            this.state.copyOverlay && classes.showCopyMsg
+                            copyOverlay && classes.showCopyMsg
                         }
                         `}
                     >
