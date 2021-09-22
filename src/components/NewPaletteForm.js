@@ -12,6 +12,7 @@ import styles from './styles/NewPaletteFormStyles';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
+import seedColors from '../seedColors';
 
 class NewPaletteForm extends React.Component {
     static defaultProps = {
@@ -22,7 +23,7 @@ class NewPaletteForm extends React.Component {
         super(props);
         this.state = {
             open: false,
-            colors: [...this.props.palettes[0].colors],
+            colors: [...seedColors[0].colors],
             newPaletteName: '',
             newColorName: '',
         };
@@ -144,6 +145,7 @@ class NewPaletteForm extends React.Component {
                         <ColorPickerForm
                             colors={colors}
                             addNewColor={this.addNewColor}
+                            paletteIsFull={paletteIsFull}
                         />
                     </div>
                 </Drawer>

@@ -52,7 +52,11 @@ class ColorPickerForm extends React.Component {
                     onChangeComplete={this.updateColor}
                     width="100%"
                 />
-                <ValidatorForm onSubmit={this.handleSubmit}>
+                <ValidatorForm
+                    onSubmit={this.handleSubmit}
+                    ref="form"
+                    instantValidate={false}
+                >
                     <TextValidator
                         margin="normal"
                         className={classes.colorNameInput}
