@@ -12,8 +12,7 @@
     opacity: 1;
     transition: ' opacity 500ms ease-out';
 }
-.Page-exit {
-}
+
 .Page-exit-active {
     opacity: 0;
     transition: 'opacity 500ms ease-out';
