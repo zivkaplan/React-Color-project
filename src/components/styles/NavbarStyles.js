@@ -28,6 +28,9 @@ const styles = {
         display: 'inline-block',
         width: '340px',
         margin: '0 10px',
+        [mediaQueries.down('md')]: {
+            width: '200px',
+        },
         [mediaQueries.down('sm')]: {
             width: '100px',
         },
