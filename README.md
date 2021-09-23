@@ -5,7 +5,7 @@
 ⚛️ Build with React using Material Ui.
 📚 A project from Colt Steele's [Modern React Bootcamp course](https://www.udemy.com/course/modern-react-bootcamp/).
 
-## [🔗 **Open Demo**](https://zivkaplan.github.io/React-Color-project")
+## [🔗 **Open Demo**](https://zivkaplan.github.io/React-Color-project/)
 
 ### Some screenshots ⬇️
 
