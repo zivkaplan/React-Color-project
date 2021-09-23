@@ -50,6 +50,15 @@ class App extends React.Component {
         );
     }
     render() {
+        const paletteListPage = (routeProps) => (
+            <Page>
+                <PaletteList
+                    palettes={this.state.palettes}
+                    {...routeProps}
+                    deletePalette={this.deletePalette}
+                />
+            </Page>
+        );
         return (
             <Route
                 render={({ location }) => (
@@ -63,17 +72,7 @@ class App extends React.Component {
                                 <Route
                                     exact
                                     path="/"
-                                    render={(routeProps) => (
-                                        <Page>
-                                            <PaletteList
-                                                palettes={this.state.palettes}
-                                                {...routeProps}
-                                                deletePalette={
-                                                    this.deletePalette
-                                                }
-                                            />
-                                        </Page>
-                                    )}
+                                    render={paletteListPage}
                                 />
                                 <Route
                                     exact
@@ -90,14 +89,14 @@ class App extends React.Component {
                                 />
                                 <Route
                                     exact
-                                    path="/palette/:palleteId"
+                                    path="/palette/:paletteId"
                                     render={(routeProps) => (
                                         <Page>
                                             <Palette
                                                 palette={generatePalette(
                                                     this.findPalette(
                                                         routeProps.match.params
-                                                            .palleteId
+                                                            .paletteId
                                                     )
                                                 )}
                                             />
@@ -106,7 +105,7 @@ class App extends React.Component {
                                 />
                                 <Route
                                     exact
-                                    path="/palette/:palleteId/:colorId"
+                                    path="/palette/:paletteId/:colorId"
                                     render={(routeProps) => (
                                         <Page>
                                             <SingleColorPalette
@@ -117,13 +116,14 @@ class App extends React.Component {
                                                 palette={generatePalette(
                                                     this.findPalette(
                                                         routeProps.match.params
-                                                            .palleteId
+                                                            .paletteId
                                                     )
                                                 )}
                                             />
                                         </Page>
                                     )}
                                 />
+                                <Route render={paletteListPage} />
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
