@@ -77,7 +77,7 @@ const styles = {
     },
     copyOverlay: {
         opacity: '0',
-        transform: 'scale(0)',
+        transform: 'scale(0.1)',
         zIndex: '0',
         width: '100%',
         height: '100%',
@@ -98,7 +98,7 @@ const styles = {
         opacity: '0',
         color: 'white',
         transition: 'transform 300ms ease-in-out',
-        transitionDelay: '200ms',
+        transitionDelay: '250ms',
         '& h1': {
             textAlign: 'center',
             fontWeight: '400',
@@ -121,12 +121,12 @@ const styles = {
         opacity: '1',
         transform: 'scale(50)',
         position: 'fixed',
-        zIndex: '10',
+        zIndex: '100',
     },
     showCopyMsg: {
         opacity: '1',
         transform: 'scale(1)',
-        zIndex: '25',
+        zIndex: '1000',
     },
 };
 export default styles;

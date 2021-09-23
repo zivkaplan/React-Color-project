@@ -2,22 +2,6 @@ import mediaQueries from './mediaQueries';
 import bg from './bg.svg';
 
 const styles = {
-    '@global': {
-        '.fade-enter': {
-            opacity: 0,
-        },
-        '.fade-enter-active': {
-            opacity: 1,
-            transition: ' opacity 500ms ease-out',
-        },
-        '.fade-exit': {
-            opacity: 1,
-        },
-        '.fade-exit-active ': {
-            opacity: 0,
-            transition: 'opacity 500ms ease-out',
-        },
-    },
     root: {
         height: '100vh',
         overflow: 'scroll',
